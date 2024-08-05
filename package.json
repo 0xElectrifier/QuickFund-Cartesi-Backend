@@ -5,7 +5,9 @@
     "main": "src/index.ts",
     "dependencies": {
         "@deroll/app": "^0.7.0",
+        "@deroll/wallet": "^0.8.0",
         "abitype": "^1.0.5",
+        "dotenv": "^16.4.5",
         "eslint": "^8.57.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-plugin-import": "^2.29.1",
@@ -22,9 +24,9 @@
         "vitest": "^2.0.4"
     },
     "scripts": {
-        "build": "esbuild ./src/index.ts --bundle --outfile=dist/index.js --platform=node --target=node20",
+        "build": "esbuild ./src/index.js --bundle --outfile=dist/index.js --platform=node --target=node20",
         "clean": "rm -rf node_modules && rm -rf dist",
-        "dev": "ROLLUP_HTTP_SERVER_URL=\"http://127.0.0.1:8080/host-runner\" ts-node src/index.ts",
+        "dev": "ROLLUP_HTTP_SERVER_URL=\"http://127.0.0.1:8080/host-runner\" ts-node src/index.js",
         "test": "vitest"
     },
     "keywords": [
