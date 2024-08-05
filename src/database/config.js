@@ -1,9 +1,12 @@
 import mongoose from "mongoose";
 
 
-const connectionStr = process.env.ATLAS_CONN_STRING;
+let connectionStr = process.env.ATLAS_CONN_STR || "mongodb://127.0.0.1:27017";
 
-async function configMongo() {
+connectionStr += "/cartesi";
+
+
+export const configMongo = async () => {
     await mongoose.connect(connectionStr)
 }
 
