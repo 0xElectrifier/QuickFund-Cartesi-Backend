@@ -56,10 +56,10 @@ app.addInspectHandler(async ({ metadata, payload }) => {
 
         case "about": // inspect/0x`${String}`/about
             const campaignObj = await getCampaign(path[0]);
-			if (!campaignObj) {
-				sendReport({ error: "No campaign with this id exists." });
-                return "reject";
-			}
+						if (!campaignObj) {
+						sendReport({ error: "No campaign with this id exists." });
+            		return "reject";
+						}		
             sendReport({ payload: campaignObj });
             break;
 
