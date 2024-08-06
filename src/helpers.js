@@ -14,7 +14,7 @@ const rollup_server = process.env.ROLLUP_SERVER_URL;
 export async function getCampaign(campaignID) {
     const _obj = await Campaign.findOne(
         { campaignID },
-        { projection: {_id: 0, __v: 0, campaignID: 0 }}
+        { projection: {_id: 0, __v: 0}}
     )
     return _obj;
 }
@@ -43,7 +43,7 @@ export async function listContributors(metadata, path) {
     const campaignID = path[0];
     const contributors = await Contibution.find(
         { campaignID },
-        { projection: {_id: 0, campaignID: 0},
+        { projection: {_id: 0, __v: 0},
     });
 
     return contributors;
@@ -56,7 +56,7 @@ export async function listContributors(metadata, path) {
  */
 async function sendReport(body) {
     const endpoint = rollup_server + "/report";
-    const bodyHex = stringToHex(body);
+    const bodyHex = stringToHex(JSON.stringify(body));
     const reportRes = await fetch(endpoint, {
         method: "POST",
         headers: {
@@ -116,7 +116,6 @@ export function parsePayloadJSON(payload) {
  */
 export async function createCampaign({ metadata, payload }) {
     // payload - { method: "create_campaign", goal: BigInt, duration: Number(Days) }
-    // Note: 
     const sender = metadata.msg_sender;
     const goal = BigInt(payload.goal);
     const amountPledged = 0;
